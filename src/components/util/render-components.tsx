@@ -3,8 +3,6 @@ import { HeroBanner } from "../hero-banner";
 
 export default function RenderComponents({id, ...props}: {id: string}) {
   let Component = null;
-  console.log(id)
-
   switch(id) {
     case 'hero_banner':
       Component = HeroBanner
