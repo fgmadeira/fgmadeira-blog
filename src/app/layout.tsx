@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Button } from "@/components/ui/button";
+import { Facebook, Instagram, Twitter, UtensilsCrossed } from "lucide-react";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +30,155 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+          {/* Navigation */}
+          <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+            <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
+              <div className="flex gap-6 md:gap-10">
+                <Link href="/" className="flex items-center space-x-2">
+                  <UtensilsCrossed className="h-6 w-6" />
+                  <span className="inline-block font-bold">TasteTravels</span>
+                </Link>
+                <nav className="hidden gap-6 md:flex">
+                  <Link
+                    href="/"
+                    className="flex items-center text-lg font-medium text-muted-foreground transition-colors hover:text-primary"
+                  >
+                    Home
+                  </Link>
+                  <Link href="/blog" className="flex items-center text-lg font-medium transition-colors hover:text-primary">
+                    Blog
+                  </Link>
+                  <Link
+                    href="#"
+                    className="flex items-center text-lg font-medium text-muted-foreground transition-colors hover:text-primary"
+                  >
+                    Destinations
+                  </Link>
+                  <Link
+                    href="#"
+                    className="flex items-center text-lg font-medium text-muted-foreground transition-colors hover:text-primary"
+                  >
+                    About
+                  </Link>
+                </nav>
+              </div>
+              <div className="flex flex-1 items-center justify-end space-x-4">
+                <Button variant="ghost" size="icon">
+                  <UtensilsCrossed className="h-5 w-5 md:hidden" />
+                  <span className="sr-only">Menu</span>
+                </Button>
+              </div>
+            </div>
+          </header>
+          {children}
+          {/* Footer */}
+          <footer className="border-t bg-background">
+            <div className="container py-8 md:py-12">
+              <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+                <div>
+                  <div className="flex items-center space-x-2">
+                    <UtensilsCrossed className="h-6 w-6" />
+                    <span className="font-bold">TasteTravels</span>
+                  </div>
+                  <p className="mt-4 text-sm text-muted-foreground">
+                    Exploring the world one dish at a time. Join us on our culinary adventures across continents.
+                  </p>
+                  <div className="mt-4 flex space-x-4">
+                    <Link href="#" className="text-muted-foreground hover:text-primary">
+                      <Instagram className="h-5 w-5" />
+                      <span className="sr-only">Instagram</span>
+                    </Link>
+                    <Link href="#" className="text-muted-foreground hover:text-primary">
+                      <Twitter className="h-5 w-5" />
+                      <span className="sr-only">Twitter</span>
+                    </Link>
+                    <Link href="#" className="text-muted-foreground hover:text-primary">
+                      <Facebook className="h-5 w-5" />
+                      <span className="sr-only">Facebook</span>
+                    </Link>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">Explore</h3>
+                  <ul className="space-y-2">
+                    <li>
+                      <Link href="#" className="text-muted-foreground hover:text-primary">
+                        Home
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/blog" className="text-muted-foreground hover:text-primary">
+                        Blog
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" className="text-muted-foreground hover:text-primary">
+                        Destinations
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" className="text-muted-foreground hover:text-primary">
+                        Recipes
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">Resources</h3>
+                  <ul className="space-y-2">
+                    <li>
+                      <Link href="#" className="text-muted-foreground hover:text-primary">
+                        Travel Guides
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" className="text-muted-foreground hover:text-primary">
+                        Food Dictionary
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" className="text-muted-foreground hover:text-primary">
+                        Cooking Tips
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" className="text-muted-foreground hover:text-primary">
+                        Restaurant Reviews
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider">Legal</h3>
+                  <ul className="space-y-2">
+                    <li>
+                      <Link href="#" className="text-muted-foreground hover:text-primary">
+                        Privacy Policy
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" className="text-muted-foreground hover:text-primary">
+                        Terms of Service
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" className="text-muted-foreground hover:text-primary">
+                        Cookie Policy
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" className="text-muted-foreground hover:text-primary">
+                        Contact Us
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
+                <p>&copy; {new Date().getFullYear()} TasteTravels. All rights reserved.</p>
+              </div>
+            </div>
+          </footer>
       </body>
     </html>
   );

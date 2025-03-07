@@ -62,13 +62,31 @@ const renderOption = {
  *
  */
 export const getEntry = ({
-  contentTypeUid
+  contentTypeUid,
+  referenceFieldPath,
+  jsonRtePath,
 }: GetEntry) => {
+  return new Promise((resolve, reject) => {
     const query = Stack.ContentType(contentTypeUid).Query();
-    return query
+    if (referenceFieldPath) query.includeReference(referenceFieldPath);
+    query
       .toJSON()
       .find()
-
+      .then(
+        (result) => {
+          jsonRtePath &&
+            Utils.jsonToHTML({
+              entry: result,
+              paths: jsonRtePath,
+              renderOption,
+            });
+          resolve(result);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+  });
 };
 
 /**
